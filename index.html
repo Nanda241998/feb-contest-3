@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Editable Table</title>
+	<style>
+        * {
+	box-sizing: border-box;
+}
+
+
+
+h1{
+    padding: 15px;
+    background-color: black;
+    color: white;
+width: 100%;
+height: 70px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+table th, table td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: left;
+}
+
+table th {
+	background-color: #f2f2f2;
+}
+
+button {
+	margin-right: 10px;
+}
+
+    </style>
+</head>
+<body>
+	<div class="container">
+		<h1>Dashboard</h1>
+        <button id="add-row-btn" style="background-color: black;color: white;height: 30px; width:150px;">Create a New Row</button><br><br>
+		<table id="data-table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Student Name</th>
+					<th>Student Roll</th>
+					<th>Subject</th>
+					<th>Marks</th>
+					<th>Marked By</th>
+                    <th>Save
+                        
+                    </th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	
+		
+	</div>
+	<script>
+    // Define table data array
+    const tableBody = document.querySelector('#data-table tbody');
+  const addRowBtn = document.querySelector('#add-row-btn');
+  let idCounter = 1; // start at 1 for first row
+
+  addRowBtn.addEventListener('click', () => {
+    // create new row element
+    const newRow = document.createElement('tr');
+
+    // create and append cells to row element
+    const idCell = document.createElement('td');
+    idCell.textContent = idCounter;
+    newRow.appendChild(idCell);
+
+    const nameCell = document.createElement('td');
+    nameCell.innerHTML = '<input type="text">';
+    newRow.appendChild(nameCell);
+
+    const rollCell = document.createElement('td');
+    rollCell.innerHTML = '<input type="text">';
+    newRow.appendChild(rollCell);
+
+    const subjectCell = document.createElement('td');
+    subjectCell.innerHTML = '<input type="text">';
+    newRow.appendChild(subjectCell);
+
+    const marksCell = document.createElement('td');
+    marksCell.innerHTML = '<input type="text">';
+    newRow.appendChild(marksCell);
+
+    const markedByCell = document.createElement('td');
+    markedByCell.innerHTML = '<input type="text">';
+    newRow.appendChild(markedByCell);
+
+    const saveByCell = document.createElement('td');
+    saveByCell.innerHTML = '<button id="save-btn"style="background-color: black; color: white;">Save</button>';
+        newRow.appendChild(saveByCell);
+
+    // append new row to table body
+    tableBody.appendChild(newRow);
+
+    // increment ID counter for next row
+    idCounter++;
+  });
+  saveBtn.addEventListener('click', () => {
+  const rows = tableBody.querySelectorAll('tr');
+  rows.forEach(row => {
+    const inputs = row.querySelectorAll('input');
+    const rowData = {};
+    let isValid = true;
+    inputs.forEach(input => {
+      if (input.name === 'marks' && !input.checkValidity()) {
+        isValid = false;
+      } else if (input.name === 'marked_by' && !input.checkValidity()) {
+        isValid = false;
+      } else {
+        rowData[input.name] = input.value;
+      }
+    });
+    if (isValid) {
+      rowData.id = tableData.length + 1;
+      tableData.push(rowData);
+    }
+  });
+  console.log('New row:', tableData[tableData.length - 1]);
+  console.log('Table data:', tableData);
+});
+function validateForm() {
+      var marks = document.forms["myForm"]["marks"].value;
+      var markedBy = document.forms["myForm"]["markedBy"].value;
+
+      // Check if marks is empty or not a number
+      if (marks == "" || isNaN(marks)) {
+        alert("Marks must be a number");
+        return false;
+      }
+
+      // Check if markedBy is empty or not a valid email address
+      if (markedBy == "" || !isValidEmail(markedBy)) {
+        alert("Marked by must be a valid email address");
+        return false;
+      }
+
+      // Form is valid
+      return true;
+    }
+
+    function isValidEmail(email) {
+      // Regular expression for validating email addresses
+      var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      return emailRegex.test(email);
+    }
+// Add event listener for the "save" button
+/*saveBtn.addEventListener("click", () => {
+  // Loop through each row in the table (except the header row)
+  const tableRows = tableBody.querySelectorAll("tr:not(:first-child)");
+
+  // Validate the input fields in each row
+  let isValid = true;
+  tableRows.forEach((row) => {
+    const cells = row.querySelectorAll("td");
+
+    // Check that all input fields are filled in
+    cells.forEach((cell) => {
+      if (!cell.textContent.trim()) {
+        isValid = false;
+        cell.classList.add("error");
+      } else {
+        cell.classList.remove("error");
+      }
+    });
+
+    // Check that the "marks" field only contains numbers
+    const marksCell = cells[4];
+    if (isNaN(marksCell.textContent.trim())) {
+      isValid = false;
+      marksCell.classList.add("error");
+    } else {
+      marksCell.classList.remove("error");
+    }
+
+    // Check that the "markedBy" field is a valid email address
+    const markedByCell = cells[5];
+    if (
+      !markedByCell.textContent.trim().match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.*/
+      // Get the input fields and save button
+
+
+
+        </script>
+</body>
+</html>
